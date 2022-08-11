@@ -1,8 +1,6 @@
 package com.example.firstproject.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +11,8 @@ import javax.persistence.Id;
 @AllArgsConstructor //생성자 생성
 @NoArgsConstructor //디폴트 생성자
 @ToString
+@Getter
+@Setter
 public class Article {
 
     @Id //PK칼럼 지정

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @Slf4j //로깅을 위한 어노테이션
 public class ArticleController {
@@ -36,7 +38,7 @@ public class ArticleController {
         //2. Repository에게 Entity를 DB로 저장하게함!
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
-        return "";
+        return "redirect:/articles/"+saved.getId();
     }
     @GetMapping("/articles/{id}") //요 id위치에는 변화가능함
     public String show(@PathVariable Long id, Model model){ //여기 인수인 id가 위에주소창의 변수로 활용된다 선언
@@ -50,5 +52,12 @@ public class ArticleController {
 
         //3: 보여줄 페이지를 설정!
         return "/articles/show";
+    }
+
+    @GetMapping("/articles")
+    public String index(Model model){
+        List<Article> articleList = articleRepository.findAll();
+        model.addAttribute("articleList",articleList);
+        return "/articles/index";
     }
 }
