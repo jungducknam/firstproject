@@ -1,0 +1,17 @@
+{{>layouts/header}}
+{{#article}}
+<form class="container" method="post" action="/articles/update">
+    <div class="mb-3">
+        <input type="text" name="id" value="{{id}}" style="display:none">
+        <label class="form-label" >제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" >내용</label>
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/articles/{{id}}"><button type="button" class="btn btn-primary">back</button></a> <!--ArticleController의 edit메소드에서 모델을 줄때 article이라는 이름으로 보냈으니, 그에맞게 받아야지!-->
+</form>
+{{/article}}
+{{>layouts/footer}}
